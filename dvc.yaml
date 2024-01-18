@@ -1,0 +1,17 @@
+stages:
+  preprocess_data:
+    cmd: python3 process_data.py
+    deps:
+      - process_data.py
+      - cars24-car-price.xlsx
+    outs:
+      - data_processed.csv
+
+  train:
+    cmd: python3 train.py
+    deps:
+      - train.py
+      - data_processed.csv
+    metrics:
+      - metrics.json:
+          cache: false
